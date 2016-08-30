@@ -23,12 +23,14 @@ var transform = function(collection, callback){
 
 
 // 2. allNumbersMultipliedByThree
-
 var multThree = function(value){
 	return value * 3;
-}
+};
+
 var numbers = [1, 2, 3, 4, 5];
+
 var allNumbersMultipliedByThree = transform(numbers, multThree);
+
 console.log(allNumbersMultipliedByThree)
 
 
@@ -37,7 +39,7 @@ var bestSentence = "This is the best six week course ever!";
 
 var upperCaseString = function(string){
 	return string.toUpperCase();
-}
+};
 
 var bestSentenceToUpperCase = transform(bestSentence.split(), upperCaseString).join();
 console.log(bestSentenceToUpperCase)
@@ -46,21 +48,69 @@ console.log(bestSentenceToUpperCase)
 var person = {name: 'Jon', greatestFear: 'fearItself'};
 var contentsArray = function(value, key){
 	return [key, value]; 
-}
+};
+
 var contentsCollection = transform(person, contentsArray)
 console.log(contentsCollection)
 
 // 5. multByThree
+var multByThree = function(collection){
+	return transform(collection, multThree);
+};
+
+var byThreeArray = [1, 2, 3];
+console.log("Testing multByThree:", multByThree(byThreeArray));
 
 // 6. upperCase
+var upperCase = function(collection){
+	return transform(collection.split(), upperCaseString).join();
+};
+
+var testString = "Hello World";
+console.log("Testing upperCase:", upperCase(testString));
 
 // 7. contentsCollection
+var contentsCollection = function(collection){
+	return transform(person, contentsArray);
+};
+
+console.log("Testing contentsCollection:", contentsCollection(person));
 
 // 8. multByWhatever
+var multByWhatever = function(collection, inputNum){
+	return transform(collection, function(element){
+		return element * inputNum;
+	})
+};
+
+var numbers = [1 , 3, 5, 30, 25];
+
+console.log("Testing multByWhatever:", multByWhatever(numbers, 3));
 
 // 9. divideByWhatever
+var divideByWhatever = function(collection, inputNum){
+	return transform(collection, function(element){
+		return element / inputNum;
+	})
+};
+
+console.log("Testing divideByWhatever:", divideByWhatever(numbers, 2));
 
 // 10. switchCase
+var lowerCaseString = function(string){
+	return string.toLowerCase();
+};
+
+var switchCase = function(sentence, case){
+	if(case === "lower"){
+		return transform(sentence.split(), lowerCaseString).join()
+	}
+	else if(case === "upper"){
+		return transform(sentence.split(), upperCaseString).join()
+	}
+};
+
+console.log("Testing switchCase", switchCase("Hello World", "lower"));
 
 // 11. contentsCollector
 
