@@ -144,6 +144,15 @@ var makeArray = function(number){
 console.log("Testing makeArray:", makeArray(5));
 
 // 14. makeRow
+var makeRow = function(row){
+	transform(row, function(element){
+		 element = {state: null}
+	})
+	return row;
+}
+
+var randomArray = [1,2,3,4,5]
+console.log(makeRow(randomArray))
 
 // 15. makeTicTacToeBoard
 
