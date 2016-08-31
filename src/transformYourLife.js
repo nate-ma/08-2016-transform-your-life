@@ -97,16 +97,17 @@ var divideByWhatever = function(collection, inputNum){
 console.log("Testing divideByWhatever:", divideByWhatever(numbers, 2));
 
 // 10. switchCase
-var lowerCaseString = function(string){
-	return string.toLowerCase();
-};
 
-var switchCase = function(sentence, case){
-	if(case === "lower"){
-		return transform(sentence.split(), lowerCaseString).join()
+var switchCase = function(sentence, thisCase){
+	if(thisCase === "lower"){
+		return transform(sentence.split(), function(string){
+			return string.toLowerCase()
+		}).join()
 	}
-	else if(case === "upper"){
-		return transform(sentence.split(), upperCaseString).join()
+	else if(thisCase === "upper"){
+		return transform(sentence.split(), function(string){
+			return string.toUpperCase()
+		}).join()
 	}
 };
 
@@ -114,7 +115,28 @@ console.log("Testing switchCase", switchCase("Hello World", "lower"));
 
 // 11. contentsCollector
 
+var contentsCollector = function(obj, indicator){
+	return transform(obj, function(value, key){
+		if (indicator === "key"){
+		return [key]
+	} else if (indicator === "value"){
+		return [value]
+	} else {
+		return [key, value]
+	  }
+	})
+}
+
+var person = {name: 'Jon', greatestFear: 'fearItself'};
+console.log(contentsCollector(person))
+
+
+
 // 13. makeArray
+
+var makeArray = function(number){
+	
+}
 
 // 14. makeRow
 
