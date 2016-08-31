@@ -1,5 +1,4 @@
 var loop = function(collection, callback){
-
   if (Array.isArray(collection)){
     for (var i = 0; i < collection.length; i++){
       callback(collection[i], i);
@@ -118,25 +117,31 @@ console.log("Testing switchCase", switchCase("Hello World", "lower"));
 var contentsCollector = function(obj, indicator){
 	return transform(obj, function(value, key){
 		if (indicator === "key"){
-		return [key]
+		return [key];
 	} else if (indicator === "value"){
-		return [value]
+		return [value];
 	} else {
-		return [key, value]
+		return [key, value];
 	  }
 	})
-}
+};
 
 var person = {name: 'Jon', greatestFear: 'fearItself'};
 console.log(contentsCollector(person))
 
-
-
 // 13. makeArray
 
 var makeArray = function(number){
-	
-}
+	var tempArray = [0];
+	loop(tempArray, function(element){
+		if(tempArray.length < number){
+			tempArray.push(element + 1);
+		}
+	})
+	return tempArray;
+};
+
+console.log("Testing makeArray:", makeArray(5));
 
 // 14. makeRow
 
